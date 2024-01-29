@@ -11,5 +11,5 @@ public class AppDbContext : DbContext
         
     }
     
-    public DbSet<Course> Contributors => Set<Course>();
+    public DbSet<Course> Courses => Set<Course>();
 }
