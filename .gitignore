@@ -47,3 +47,4 @@ Thumbs.db
 /.vs
 
 /TrackMyCourseApp/src/02.TrackMyCourse.Web/node_modules
+/TrackMyCourseApp/src/01.TrackMyCourse.Web/node_modules
