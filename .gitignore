@@ -45,3 +45,4 @@ testem.log
 .DS_Store
 Thumbs.db
 /.vs
+/TrackMyCourseApp/src/02.TrackMyCourse.Web/node_modules
