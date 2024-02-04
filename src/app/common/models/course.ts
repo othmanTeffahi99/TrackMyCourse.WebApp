@@ -1,8 +1,9 @@
 export interface Course {
     id: number;
-    title: string;
+    name: string;
     description: string;
     progress: number;
-    completed: boolean;
-    favorite: boolean;
+    isCompleted: boolean;
+    isFavorite: boolean;
+    updatedAt: Date;
 }

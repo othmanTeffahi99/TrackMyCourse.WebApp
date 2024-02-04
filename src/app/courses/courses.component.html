@@ -11,7 +11,7 @@
                     <mat-list-item
                       *ngFor="let course of courses"
                       (click)="selectCourse(course)">
-                      <h3 matLine>{{ course.title | titlecase }}</h3>
+                      <h3 matLine>{{ course.name | titlecase }}</h3>
                       <p matLine>
                         {{ course.description }}
                       </p>
@@ -38,14 +38,14 @@
                     <ng-template #elseBlock>Select a Course</ng-template>
                 </mat-card-title>
             </mat-card-header>
-            <form #form="ngForm" (submit)="saveCourse(selectedCourse)">
+            <form #form="ngForm" (submit)="updateCourse(selectedCourse)">
                 <mat-card-content>
                     <mat-form-field class="full-width">
                         <input
                             matInput
                             placeholder="title"
-                            [(ngModel)]="selectedCourse.title"
-                            name="title"
+                            [(ngModel)]="selectedCourse.name"
+                            name="name"
                             required
                             type="text" />
                     </mat-form-field>
@@ -69,10 +69,12 @@
 
                     </section>
                     <section class="full-width">
-                        <mat-checkbox  [(ngModel)]="selectedCourse.favorite" name="favorite">
+                        <mat-checkbox  [(ngModel)]="selectedCourse.isFavorite" name="isFavorite">
                           Favorite
                         </mat-checkbox>
-
+                        <mat-checkbox  [(ngModel)]="selectedCourse.isFavorite" name="isCompleted">
+                            Is Completed
+                          </mat-checkbox>
                     </section>
                 </mat-card-content>
                 <mat-card-actions>
@@ -83,9 +85,9 @@
                 </mat-card-actions>
             </form>
 
-            <hr>
+            <!-- <hr>
             <pre>{{form.value|json}}</pre>
-            <pre>{{form.valid|json}}</pre>
+            <pre>{{form.valid|json}}</pre> -->
         </mat-card>
     </div>
 </div>

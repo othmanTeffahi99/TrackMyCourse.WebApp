@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from '../common/models/course';
 import { EMPTY } from 'rxjs';
+import { CoursesService } from '../common/services/courses.service';
 
 const emptyCourse: Course = {
   id: 0,
-  title: '',
-  description:'',
+  name: '',
+  description: '',
   progress: 0,
-  favorite: false,
-  completed: false
+  isFavorite: false,
+  isCompleted: false,
+  updatedAt: new Date()
 }
 
 
@@ -21,65 +23,58 @@ const emptyCourse: Course = {
   standalone: false
 })
 export class CoursesComponent implements OnInit {
-  courses :Course[] = [
-    {
-      id: 1,
-      title: 'Angular 13 Fundamentals',
-      description: 'Learn the fundamentals of Angular 13',
-      progress: 26,
-      favorite: true,
-      completed: false
-    },
-    {
-      id: 2,
-      title: 'React Basics',
-      description: 'Introduction to the fundamentals of React',
-      progress: 50,
-      favorite: true,
-      completed: false
-    },
-    {
-      id: 3,
-      title: 'Vue.js Advanced Concepts',
-      description: 'Explore advanced concepts and features in Vue.js',
-      progress: 77,
-      favorite: true,
-      completed: false
-    },
-    {
-      id: 4,
-      title: 'Node.js for Beginners',
-      description: 'A beginner-friendly guide to Node.js development',
-      progress: 100,
-      favorite: true,
-      completed: false
-    }
-  ];
 
-  constructor() { }
 
- selectedCourse: Course = emptyCourse;
- originalTitla: string = '';
+  courses: Course[] = [];
+  selectedCourse: Course = emptyCourse;
+  originalTitla: string = '';
 
- selectCourse(course : any = null )
- {
-    this.originalTitla = course.title;
-    this.selectedCourse  = {...course};
- }
+  constructor(private courseService: CoursesService) { }
 
- deleteCourse(courseId: any){
-  console.log("DELETE COURSE",courseId);
- }
 
- saveCourse(course:any): void{
-      console.log("Save Changes",course);
- }
 
- reset() : void{
-  this.selectCourse({...emptyCourse});
- }
+  selectCourse(course: Course): void {
+    this.originalTitla = course.name;
+    this.selectedCourse = { ...course };
+  }
+
+  deleteCourse(courseId: number): void {
+    console.log("DELETE COURSE", courseId);
+    this.courseService.deleteCourse(courseId).subscribe((result:any)  => {
+      console.log("Result", result);
+    });
+  }
+
+  updateCourse(course: Course): void {
+    console.log("Update Course", course);
+    this.courseService.updateCourse(course).subscribe((result:any)  => {
+      console.log("Result", result);
+    });
+  }
+
+  getAllCourses(): void {
+    this.courseService.getCourses().subscribe((result:any)  => {
+      this.courses = result as Course[];
+      console.log("Result", result);
+    });
+  }
+
+
+  CreateCourse(course: Course): void {
+    console.log("Save Changes", course);
+    this.courseService.createCourse(course).subscribe((result:any) => {
+      console.log("Result", result);
+    });
+  }
+
+  reset(): void {
+    this.selectCourse({ ...emptyCourse });
+  }
 
   ngOnInit(): void {
-  } 
+
+    this.getAllCourses();
+
+  }
 
 }
