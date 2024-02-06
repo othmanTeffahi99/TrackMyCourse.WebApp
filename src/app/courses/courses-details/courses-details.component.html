@@ -1,0 +1,62 @@
+<h3>Course details</h3>
+
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            <span *ngIf="selectedCourse?.id; else elseBlock">
+                {{selectedCourse.name | titlecase}}
+            </span>
+            <ng-template #elseBlock>Select a Course</ng-template>
+        </mat-card-title>
+    </mat-card-header>
+    <form #form="ngForm" (submit)="updateCourse.emit(selectedCourse)">
+        <mat-card-content>
+            <mat-form-field class="full-width">
+                <input
+                    matInput
+                    placeholder="title"
+                    [(ngModel)]="selectedCourse.name"
+                    name="name"
+                    required
+                    type="text" />
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <textarea
+                    matInput
+                    placeholder="Description"
+                    [(ngModel)]="selectedCourse.description"
+                    name="description"
+                    type="text">
+                </textarea>
+            </mat-form-field>
+            <section class="full-width">
+                <h4>{{selectedCourse.progress}} Complete</h4>
+                <mat-slider class="full-width">
+                    <input matSliderThumb min="0" max="100"
+                        thumblLbel
+                        [(ngModel)]="selectedCourse.progress"
+                        name="progress">
+                </mat-slider>
+
+            </section>
+            <section class="full-width">
+                <mat-checkbox  [(ngModel)]="selectedCourse.isFavorite" name="isFavorite">
+                  Favorite
+                </mat-checkbox>
+                <mat-checkbox  [(ngModel)]="selectedCourse.isFavorite" name="isCompleted">
+                    Is Completed
+                  </mat-checkbox>
+            </section>
+        </mat-card-content>
+        <mat-card-actions>
+            <button type="submit" mat-button
+                [disabled]="form.invalid" >save</button>
+            <button type="button" mat-button
+                (click)="reset.emit()">Cancel</button>
+        </mat-card-actions>
+    </form>
+
+    <!-- <hr>
+    <pre>{{form.value|json}}</pre>
+    <pre>{{form.valid|json}}</pre> -->
+</mat-card>
