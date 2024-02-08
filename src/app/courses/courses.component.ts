@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from '../common/models/course';
-import { EMPTY } from 'rxjs';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CoursesService } from '../common/services/courses.service';
+import { AddCourseDialogComponent } from './add-course-dialog/add-course-dialog.component';
 
 const emptyCourse: Course = {
   id: 0,
@@ -29,7 +30,7 @@ export class CoursesComponent implements OnInit {
   selectedCourse: Course = emptyCourse;
   originalTitla: string = '';
 
-  constructor(private courseService: CoursesService) { }
+  constructor(private courseService: CoursesService, private dialog: MatDialog) { }
 
 
 
@@ -40,20 +41,20 @@ export class CoursesComponent implements OnInit {
 
   deleteCourse(courseId: number): void {
     console.log("DELETE COURSE", courseId);
-    this.courseService.deleteCourse(courseId).subscribe((result:any)  => {
+    this.courseService.deleteCourse(courseId).subscribe((result: any) => {
       console.log("Result", result);
     });
   }
 
   updateCourse(course: Course): void {
     console.log("Update Course", course);
-    this.courseService.updateCourse(course).subscribe((result:any)  => {
+    this.courseService.updateCourse(course).subscribe((result: any) => {
       console.log("Result", result);
     });
   }
 
   getAllCourses(): void {
-    this.courseService.getCourses().subscribe((result:any)  => {
+    this.courseService.getCourses().subscribe((result: any) => {
       this.courses = result as Course[];
       console.log("Result", result);
     });
@@ -62,9 +63,23 @@ export class CoursesComponent implements OnInit {
 
   CreateCourse(course: Course): void {
     console.log("Save Changes", course);
-    this.courseService.createCourse(course).subscribe((result:any) => {
+    this.courseService.createCourse(course).subscribe((result: any) => {
       console.log("Result", result);
     });
+  }
+
+  openAddCourseDialog(): void {
+ 
+    console.log("Open Add Course Dialog");
+    const dialogRef = this.dialog.open(AddCourseDialogComponent, {
+      width: '250px',
+      autoFocus: true,
+      data: { course: { ...emptyCourse } }
+    });
+
+
+
+    dialogRef.afterClosed();
   }
 
   reset(): void {

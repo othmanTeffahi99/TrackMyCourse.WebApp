@@ -1,11 +1,15 @@
 <div class="courses-containers">
+
+
     <div class="courses-list">
-       <app-courses-list
-            [courses]="courses"
-            (selectCourse)="selectCourse($event)"
-            (deleteCourse)="deleteCourse($event)">
-        </app-courses-list>
-    </div>
+        <app-courses-list
+             [courses]="courses"
+             (selectCourse)="selectCourse($event)"
+             (deleteCourse)="deleteCourse($event)"
+             (openDialog)="openAddCourseDialog()"
+           >
+         </app-courses-list>
+     </div>
 
     <div class="course-details">
        <app-courses-details

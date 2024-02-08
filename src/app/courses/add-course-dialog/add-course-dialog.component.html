@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>Create Course</h2>
+
+<mat-dialog-content>
+  
+    <mat-form-field>
+        <input matInput
+                placeholder="Course Name"
+                [value]="course.name.toString()"
+                required
+               >
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <textarea
+            matInput
+            placeholder="Course Description"
+            [value]="course.description.toString()"
+            name="description"
+            required
+            type="text">
+        </textarea>
+    </mat-form-field>
+ 
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button"(click)="close()">Close</button>
+    <button class="mat-raised-button mat-primary"(click)="save()">Save</button>
+</mat-dialog-actions>

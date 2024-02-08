@@ -8,8 +8,18 @@ import { Course } from '../../common/models/course';
   standalone: false
 })
 export class CoursesDetailsComponent {
+  
+  currentCourse!: Course ;
+  originalTitle: string = '';
 
-   @Input() selectedCourse!: Course;
+
   @Output() updateCourse = new EventEmitter();
-   @Output() reset = new EventEmitter();
+  @Output() reset = new EventEmitter();
+
+  @Input() set selectedCourse(course: Course) {
+    if(course){
+      this.currentCourse = {...course}
+      this.originalTitle = course.name;
+    }
+  };
 }

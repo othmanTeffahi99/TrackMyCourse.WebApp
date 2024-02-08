@@ -3,19 +3,19 @@
 <mat-card>
     <mat-card-header>
         <mat-card-title>
-            <span *ngIf="selectedCourse?.id; else elseBlock">
-                {{selectedCourse.name | titlecase}}
+            <span *ngIf="currentCourse?.id; else elseBlock">
+                {{originalTitle | titlecase}}
             </span>
             <ng-template #elseBlock>Select a Course</ng-template>
         </mat-card-title>
     </mat-card-header>
-    <form #form="ngForm" (submit)="updateCourse.emit(selectedCourse)">
+    <form #form="ngForm" (submit)="updateCourse.emit(currentCourse)">
         <mat-card-content>
             <mat-form-field class="full-width">
                 <input
                     matInput
                     placeholder="title"
-                    [(ngModel)]="selectedCourse.name"
+                    [(ngModel)]="currentCourse.name"
                     name="name"
                     required
                     type="text" />
@@ -24,26 +24,26 @@
                 <textarea
                     matInput
                     placeholder="Description"
-                    [(ngModel)]="selectedCourse.description"
+                    [(ngModel)]="currentCourse.description"
                     name="description"
                     type="text">
                 </textarea>
             </mat-form-field>
             <section class="full-width">
-                <h4>{{selectedCourse.progress}} Complete</h4>
+                <h4>{{currentCourse.progress}} Complete</h4>
                 <mat-slider class="full-width">
                     <input matSliderThumb min="0" max="100"
                         thumblLbel
-                        [(ngModel)]="selectedCourse.progress"
+                        [(ngModel)]="currentCourse.progress"
                         name="progress">
                 </mat-slider>
 
             </section>
             <section class="full-width">
-                <mat-checkbox  [(ngModel)]="selectedCourse.isFavorite" name="isFavorite">
+                <mat-checkbox  [(ngModel)]="currentCourse.isFavorite" name="isFavorite">
                   Favorite
                 </mat-checkbox>
-                <mat-checkbox  [(ngModel)]="selectedCourse.isFavorite" name="isCompleted">
+                <mat-checkbox  [(ngModel)]="currentCourse.isFavorite" name="isCompleted">
                     Is Completed
                   </mat-checkbox>
             </section>

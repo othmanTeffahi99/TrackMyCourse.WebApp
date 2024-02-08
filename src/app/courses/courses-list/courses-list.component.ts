@@ -11,4 +11,5 @@ export class CoursesListComponent {
   @Input() courses: Course[] = [];
   @Output() selectCourse = new EventEmitter();
   @Output() deleteCourse = new EventEmitter();
+  @Output() openDialog = new EventEmitter();
 }
