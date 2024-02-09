@@ -26,6 +26,6 @@ import { AddCourseDialogComponent } from './courses/add-course-dialog/add-course
     MaterialModule,
     MatDialogModule,
     HttpClientModule
-  ]
+  ],
 })
 export class AppModule {}

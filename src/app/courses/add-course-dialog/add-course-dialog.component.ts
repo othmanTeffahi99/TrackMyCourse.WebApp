@@ -10,7 +10,7 @@ import { Course } from '../../common/models/course';
   standalone: false,
 })
 export class AddCourseDialogComponent implements OnInit  {
-  course: Course;
+  course: Course ;
   constructor(private dialogRef: MatDialogRef<AddCourseDialogComponent>, @Inject(MAT_DIALOG_DATA) data: Course) {
       this.course = data;
   }
@@ -19,6 +19,10 @@ export class AddCourseDialogComponent implements OnInit  {
   }
 
   save() {
+    if (this.course.name == null || this.course.name.trim() == '' || this.course.description == null || this.course.description.trim() == '') {
+       return;
+    }
+    console.log("Save Course", this.course);
     this.dialogRef.close(this.course);
 }
 

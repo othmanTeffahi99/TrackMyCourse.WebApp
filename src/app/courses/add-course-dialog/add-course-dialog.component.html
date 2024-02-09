@@ -5,7 +5,8 @@
     <mat-form-field>
         <input matInput
                 placeholder="Course Name"
-                [value]="course.name.toString()"
+                [(ngModel)]="course.name"
+                name="name"
                 required
                >
     </mat-form-field>
@@ -13,7 +14,7 @@
         <textarea
             matInput
             placeholder="Course Description"
-            [value]="course.description.toString()"
+            [(ngModel)]="course.description"
             name="description"
             required
             type="text">
@@ -22,7 +23,7 @@
  
 </mat-dialog-content>
 
-<mat-dialog-actions>
-    <button class="mat-raised-button"(click)="close()">Close</button>
-    <button class="mat-raised-button mat-primary"(click)="save()">Save</button>
+<mat-dialog-actions >
+    <button mat-raised-button (click)="close()">Close</button>
+    <button mat-raised-button color="primary" class="button-container" (click)="save()">Save</button>
 </mat-dialog-actions>

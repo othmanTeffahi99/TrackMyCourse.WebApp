@@ -72,14 +72,23 @@ export class CoursesComponent implements OnInit {
  
     console.log("Open Add Course Dialog");
     const dialogRef = this.dialog.open(AddCourseDialogComponent, {
-      width: '250px',
+      width: '400px',
       autoFocus: true,
       data: { course: { ...emptyCourse } }
     });
 
 
 
-    dialogRef.afterClosed();
+    dialogRef.afterClosed().subscribe((result: Course) => 
+    {
+      console.log("The dialog was closed", result);
+      if (result) {
+        result.updatedAt = new Date();
+        result.progress = 0;
+        this.CreateCourse(result);
+      
+      }
+    });
   }
 
   reset(): void {
