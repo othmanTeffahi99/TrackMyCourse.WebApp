@@ -12,7 +12,7 @@
      </div>
 
     <div class="course-details">
-       <app-courses-details
+       <app-courses-details [style]="selectedCourse.name == '' ? 'display:none' : 'display:Block'"
             [selectedCourse]="selectedCourse"
             (updateCourse)="updateCourse($event)"
             (reset)="reset()">

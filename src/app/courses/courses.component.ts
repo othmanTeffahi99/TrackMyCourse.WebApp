@@ -27,7 +27,7 @@ export class CoursesComponent implements OnInit {
 
 
   courses: Course[] = [];
-  selectedCourse: Course = emptyCourse;
+  selectedCourse: Course =emptyCourse ;
   originalTitla: string = '';
 
   constructor(private courseService: CoursesService, private dialog: MatDialog) { }
