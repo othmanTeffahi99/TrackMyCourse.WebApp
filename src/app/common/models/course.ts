@@ -6,5 +6,5 @@ export interface Course {
     isCompleted: boolean;
     isFavorite: boolean;
     updatedAt: Date;
-    State: CourseState;
+    // State: CourseState;
 }

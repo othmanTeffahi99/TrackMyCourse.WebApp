@@ -11,7 +11,7 @@ const emptyCourse: Course = {
   progress: 0,
   isFavorite: false,
   isCompleted: false,
-  updatedAt: new Date()
+  updatedAt: new Date(),
 }
 
 
@@ -65,6 +65,7 @@ export class CoursesComponent implements OnInit {
     console.log("Save Changes", course);
     this.courseService.createCourse(course).subscribe((result: any) => {
       console.log("Result", result);
+      this.getAllCourses();
     });
   }
 
@@ -83,6 +84,8 @@ export class CoursesComponent implements OnInit {
     {
       console.log("The dialog was closed", result);
       if (result) {
+        result.name = result.name.trim();
+        result.description = result.description.trim();
         result.updatedAt = new Date();
         result.progress = 0;
         this.CreateCourse(result);
